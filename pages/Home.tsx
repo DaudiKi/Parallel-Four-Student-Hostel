@@ -75,12 +75,11 @@ const Home: React.FC = () => {
             {/* Preview Card 1 */}
             <div className="group rounded-2xl bg-white dark:bg-slate-900 overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-xl transition-all duration-300">
               <div className="h-64 overflow-hidden relative">
-                <img src="https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&q=80&w=800" alt="Room" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                <img src="/single-economy-plan.png" alt="Room" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                 <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-slate-900 shadow-sm">Best Value</div>
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-bold text-slate-900 dark:text-white">Standard Single</h3>
-                <p className="text-primary font-bold mt-1">KES 18,000<span className="text-sm font-normal text-slate-500">/mo</span></p>
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white">Single Economy Room</h3>
                 <div className="mt-6 pt-6 border-t border-slate-100 dark:border-slate-800 flex justify-between items-center">
                   <span className="text-sm text-slate-500">Shared Amenities</span>
                   <Link to="/rooms" className="text-sm font-bold text-slate-900 dark:text-white underline decoration-2 decoration-primary underline-offset-4 hover:text-primary transition-colors">Details</Link>
@@ -90,11 +89,10 @@ const Home: React.FC = () => {
             {/* Preview Card 2 */}
             <div className="group rounded-2xl bg-white dark:bg-slate-900 overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-xl transition-all duration-300">
               <div className="h-64 overflow-hidden relative">
-                <img src="https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&q=80&w=800" alt="Room" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                <img src="/twin-room-plan.png" alt="Room" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-bold text-slate-900 dark:text-white">Premium Twin</h3>
-                <p className="text-primary font-bold mt-1">KES 14,000<span className="text-sm font-normal text-slate-500">/mo</span></p>
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white">The Twin Share</h3>
                 <div className="mt-6 pt-6 border-t border-slate-100 dark:border-slate-800 flex justify-between items-center">
                   <span className="text-sm text-slate-500">En-suite Bathroom</span>
                   <Link to="/rooms" className="text-sm font-bold text-slate-900 dark:text-white underline decoration-2 decoration-primary underline-offset-4 hover:text-primary transition-colors">Details</Link>
@@ -104,12 +102,11 @@ const Home: React.FC = () => {
             {/* Preview Card 3 */}
             <div className="group rounded-2xl bg-white dark:bg-slate-900 overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-xl transition-all duration-300">
               <div className="h-64 overflow-hidden relative">
-                <img src="https://images.unsplash.com/photo-1522771753035-48497c2f6e5c?auto=format&fit=crop&q=80&w=800" alt="Room" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                <img src="/triple-room-plan.png" alt="Room" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                 <div className="absolute top-4 right-4 bg-primary px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-white shadow-sm">Premium</div>
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-bold text-slate-900 dark:text-white">Studio Apartment</h3>
-                <p className="text-primary font-bold mt-1">KES 25,000<span className="text-sm font-normal text-slate-500">/mo</span></p>
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white">The Triple Share</h3>
                 <div className="mt-6 pt-6 border-t border-slate-100 dark:border-slate-800 flex justify-between items-center">
                   <span className="text-sm text-slate-500">Private Kitchenette</span>
                   <Link to="/rooms" className="text-sm font-bold text-slate-900 dark:text-white underline decoration-2 decoration-primary underline-offset-4 hover:text-primary transition-colors">Details</Link>

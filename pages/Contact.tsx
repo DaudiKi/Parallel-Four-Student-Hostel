@@ -1,6 +1,46 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
+import emailjs from '@emailjs/browser';
 
 const Contact: React.FC = () => {
+  const form = useRef<HTMLFormElement>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
+  const sendEmail = (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    /* 
+    // EmailJS Configuration - Paused until credentials are available
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+    if (!serviceId || !templateId || !publicKey) {
+      alert('Email functionality is currently being configured. Please contact us directly at 0742 337 991.');
+      setIsSubmitting(false);
+      return;
+    }
+
+    if (form.current) {
+      emailjs.sendForm(serviceId, templateId, form.current, publicKey)
+        .then((result) => {
+          console.log('Email sent successfully:', result.text);
+          setSubmitStatus('success');
+          setIsSubmitting(false);
+          form.current?.reset();
+        }, (error) => {
+          console.error('Email sending failed:', error.text);
+          setSubmitStatus('error');
+          setIsSubmitting(false);
+        });
+    }
+    */
+    alert('Email functionality is currently being configured. Please contact us directly at 0742 337 991.');
+    setIsSubmitting(false);
+  };
+
   return (
     <div className="flex-grow w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
       <div className="mb-12 max-w-3xl">
@@ -18,10 +58,12 @@ const Contact: React.FC = () => {
               <span className="material-symbols-outlined text-accent text-3xl">mail</span>
               Send us a message
             </h3>
-            <form className="flex flex-col gap-6" onSubmit={(e) => e.preventDefault()}>
+
+            <form ref={form} className="flex flex-col gap-6" onSubmit={sendEmail}>
               <label className="flex flex-col gap-2">
                 <span className="text-slate-700 dark:text-slate-200 text-sm font-bold uppercase tracking-wide">Full Name</span>
                 <input
+                  name="user_name"
                   className="w-full rounded-xl border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 h-12 px-4 text-base text-slate-900 dark:text-white placeholder-slate-400 focus:ring-2 focus:ring-accent/20 focus:border-accent transition-all"
                   placeholder="John Doe"
                   type="text"
@@ -32,6 +74,7 @@ const Contact: React.FC = () => {
                 <label className="flex flex-col gap-2">
                   <span className="text-slate-700 dark:text-slate-200 text-sm font-bold uppercase tracking-wide">Email Address</span>
                   <input
+                    name="user_email"
                     className="w-full rounded-xl border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 h-12 px-4 text-base text-slate-900 dark:text-white placeholder-slate-400 focus:ring-2 focus:ring-accent/20 focus:border-accent transition-all"
                     placeholder="john@example.com"
                     type="email"
@@ -41,6 +84,7 @@ const Contact: React.FC = () => {
                 <label className="flex flex-col gap-2">
                   <span className="text-slate-700 dark:text-slate-200 text-sm font-bold uppercase tracking-wide">Phone Number</span>
                   <input
+                    name="contact_number"
                     className="w-full rounded-xl border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 h-12 px-4 text-base text-slate-900 dark:text-white placeholder-slate-400 focus:ring-2 focus:ring-accent/20 focus:border-accent transition-all"
                     placeholder="0742 337 991"
                     type="tel"
@@ -50,15 +94,44 @@ const Contact: React.FC = () => {
               <label className="flex flex-col gap-2">
                 <span className="text-slate-700 dark:text-slate-200 text-sm font-bold uppercase tracking-wide">Message</span>
                 <textarea
+                  name="message"
                   className="w-full rounded-xl border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 min-h-[140px] p-4 text-base text-slate-900 dark:text-white placeholder-slate-400 focus:ring-2 focus:ring-accent/20 focus:border-accent resize-none transition-all"
                   placeholder="Tell us more about your requirements..."
                   required
                 ></textarea>
               </label>
-              <button className="mt-4 w-full h-14 bg-accent hover:bg-accent-dark text-white font-bold text-lg rounded-xl shadow-lg shadow-accent/20 transition-all flex items-center justify-center gap-3 active:scale-[0.98]">
-                <span>Send Message</span>
-                <span className="material-symbols-outlined text-[22px]">send</span>
+
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="mt-4 w-full h-14 bg-accent hover:bg-accent-dark text-white font-bold text-lg rounded-xl shadow-lg shadow-accent/20 transition-all flex items-center justify-center gap-3 active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed"
+              >
+                {isSubmitting ? (
+                  <>
+                    <span className="animate-spin material-symbols-outlined text-[22px]">progress_activity</span>
+                    <span>Sending...</span>
+                  </>
+                ) : (
+                  <>
+                    <span>Send Message</span>
+                    <span className="material-symbols-outlined text-[22px]">send</span>
+                  </>
+                )}
               </button>
+
+              {/* Status Messages */}
+              {submitStatus === 'success' && (
+                <div className="p-4 rounded-xl bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 text-green-700 dark:text-green-300 flex items-center gap-3">
+                  <span className="material-symbols-outlined">check_circle</span>
+                  <p className="font-medium">Message sent successfully! We'll get back to you soon.</p>
+                </div>
+              )}
+              {submitStatus === 'error' && (
+                <div className="p-4 rounded-xl bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-300 flex items-center gap-3">
+                  <span className="material-symbols-outlined">error</span>
+                  <p className="font-medium">Failed to send message. Please check your connection.</p>
+                </div>
+              )}
             </form>
           </div>
         </div>
